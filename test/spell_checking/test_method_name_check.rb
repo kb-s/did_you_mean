@@ -10,7 +10,7 @@ class MethodNameCheckTest < Test::Unit::TestCase
     def first_name; end
     def descendants; end
     def call_incorrect_private_method
-      raiae NoMethodError
+      raise NoMethodError
     end
 
     def raise_no_method_error
@@ -61,7 +61,7 @@ class MethodNameCheckTest < Test::Unit::TestCase
   end
 
   def test_corrections_include_class_method
-    error = assert_raise(NoMethodError){ User.l0ad }
+    error = assert_raise(NoMethodError){ User.load }
 
     assert_correction :load, error.corrections
     assert_match "Did you mean?  load", get_message(error)
